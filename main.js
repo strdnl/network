@@ -62,13 +62,15 @@ function geturl(){
     var protocol_ok = url.startsWith("http://") || url.startsWith("https://") || url.startsWith("ftp://") || url.startsWith("data:text/");
     if(!protocol_ok){
         var newurl = "http://"+url;
-	    var sha = CryptoJS.SHA256(newurl).toString(CryptoJS.enc.Base64);    
-        window.location.hash = sha.substring(0, 8)
+	    var sha = CryptoJS.SHA256(newurl).toString(CryptoJS.enc.Base64);
+	     var hmac = CryptoJS.HmacMD5(newurl, sha).toString(CryptoJS.enc.Base64);
+        window.location.hash = hmac.substring(0, 8)
        return newurl;
         
         }else{
-		var sha = CryptoJS.SHA256(url).toString(CryptoJS.enc.Base64);    
-        window.location.hash = sha.substring(0, 8)
+		var sha = CryptoJS.SHA256(url).toString(CryptoJS.enc.Base64);
+		var hmac = CryptoJS.HmacMD5(url, sha).toString(CryptoJS.enc.Base64);
+        window.location.hash = hmac.substring(0, 8)
             return url;
         }
 }
@@ -144,7 +146,8 @@ console.log(hash);
             var decrypted3 = CryptoJS.AES.decrypt(decrypted2, hash);
             var decrypted =  decrypted3.toString(CryptoJS.enc.Utf8);
 var sha = CryptoJS.SHA256(decrypted).toString(CryptoJS.enc.Base64);
-        if (window.location.hash.substring(1, 9) == sha.substring(0, 8)) {
+	    var hmac = CryptoJS.HmacMD5(decrypted, sha).toString(CryptoJS.enc.Base64);
+        if (window.location.hash.substring(1, 9) == hmac.substring(0, 8)) {
             window.location.href = decrypted;}
 
     });
