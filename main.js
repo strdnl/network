@@ -1,4 +1,4 @@
-var endpoint = "https://www.jsonstore.io/80f28716932659018694272f8d67be0c06f2ed83e868c761ee07d5397b0cd7a3";
+var endpoint = "https://www.jsonstore.io/ae307cd37f37f71bcee09e378c56af2d174ae7c0686d66d50a0d9cc4a6b728b1";
 var keyIV = "";
 
 function ivcreate(){
@@ -148,7 +148,7 @@ console.log(hash);
 var sha = CryptoJS.SHA256(decrypted).toString(CryptoJS.enc.Base64);
 	    var hmac = CryptoJS.HmacMD5(decrypted, sha).toString(CryptoJS.enc.Base64);
         if (window.location.hash.substring(1, 9) == hmac.substring(0, 8)) {
-            window.location.href = decrypted;}
+            document.getElementById("content").setAttribute('src', decrypted); }
 
     });
 }
