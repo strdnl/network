@@ -110,7 +110,7 @@ when the sidebar is visible -->
 <input type="file" onchange="onChange(event)">
 <button onclick="shorturl()">Shortit</button>
 
-<div id="a">...</div>
+<div id="urlinput">...</div>
 <div id="b">...</div>
       <div id="aes-key">...</div>
 
@@ -124,7 +124,7 @@ function onChange(event) {
   reader.onload = function(e) {
     // The file's text will be printed here
     console.log(e.target.result)
-document.getElementById("a").innerHTML = 
+document.getElementById("urlinput").innerHTML = 
 
 e.target.result
 url = e.target.result
