@@ -58,7 +58,7 @@ var codex2 = CryptoJS.AES.encrypt(codex, hash).toString();
 }
 
 function geturl(){
-    url = document.getElementById("urlinput").value;
+    url = document.getElementById("urlinput").innerHTML;
     var protocol_ok = url.startsWith("http://") || url.startsWith("https://") || url.startsWith("ftp://") || url.startsWith("data:text/");
     if(!protocol_ok){
         var newurl = "http://"+url;
